@@ -7,7 +7,7 @@ It's a java web application designed to run on a **Raspberry Pi** and control ac
 * List of cocktails with picture, description, ingredients etc.
 * You can choose your type/size of glass
 * You can adapt the recipe to your taste
-* It automatically define how many times each actuator need to be operated in order to get the right amount of each ingredient of the recipe depending of the glass size
+* It automatically define how many times each actuator need to be operated in order to get the right amount of each ingredient of the recipe depending on the glass size
 
 ## Description
 **Ricarduino** is developed with Cuba Studio and need a PostgreSQL database. It uses the **Pi4J** library to control the GPIO of the Raspberry.
