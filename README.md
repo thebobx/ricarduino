@@ -1,7 +1,7 @@
 # Ricarduino
 **Ricarduino** is a robot bartender which mixes cocktails for you !
 
-It's a java web application designed to run on a Raspberry Pi and control actuators through his GPIO.
+It's a java web application designed to run on a **Raspberry Pi** and control actuators through his **GPIO**.
 
 ## Features
 * List of cocktails with picture, description, ingredients etc.
@@ -10,8 +10,8 @@ It's a java web application designed to run on a Raspberry Pi and control actuat
 * It automatically define how many times each actuator need to be operated in order to get the right amount of each ingredient of the recipe depending of the glass size
 
 ## Description
-Ricarduino is developed with Cuba Studio and need a PostgreSQL database. It uses the Pi4J library to control the GPIO of the Raspberry.
-It's designed to control linear actuators which in turn will push bar optics to dispense the ingredients.
+**Ricarduino** is developed with Cuba Studio and need a PostgreSQL database. It uses the **Pi4J** library to control the GPIO of the Raspberry.
+It's designed to control **Linear Actuators** which in turn will push **Bar Optics** to dispense the ingredients.
 So each ingredient is linked to an actuator which has GPIO number and optic size properties.
 
 ## About the name
