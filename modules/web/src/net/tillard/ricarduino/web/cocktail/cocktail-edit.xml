@@ -15,51 +15,64 @@
     </dsContext>
     <dialogMode height="600"
                 width="800"/>
-    <layout expand="windowActions"
-            spacing="true">
-        <groupBox id="picture"
-                  spacing="true">
-            <image datasource="cocktailDs"
-                   height="360px"
-                   property="picture"
-                   scaleMode="CONTAIN"
-                   width="320px"/>
-            <upload datasource="cocktailDs"
-                    fileStoragePutMode="IMMEDIATE"
-                    property="picture"
-                    showClearButton="true"/>
-        </groupBox>
-        <fieldGroup id="fieldGroup"
-                    datasource="cocktailDs">
-            <column width="250px">
-                <field property="name"/>
-                <field property="description"/>
-                <field property="howTo"/>
-            </column>
-        </fieldGroup>
-        <groupBox id="cocktailLinesBox"
-                  caption="msg://net.tillard.ricarduino.entity/Cocktail.cocktailLines">
-            <table id="cocktailLinesTable"
-                   height="200px"
-                   width="100%">
-                <actions>
-                    <action id="create"/>
-                    <action id="edit"/>
-                    <action id="remove"/>
-                </actions>
-                <columns>
-                    <column id="ingredient"/>
-                    <column id="parts"/>
-                </columns>
-                <rows datasource="cocktailLinesDs"/>
-                <buttonsPanel>
-                    <button action="cocktailLinesTable.create"/>
-                    <button action="cocktailLinesTable.edit"/>
-                    <button action="cocktailLinesTable.remove"/>
-                </buttonsPanel>
-            </table>
-        </groupBox>
-        <frame id="windowActions"
-               screen="editWindowActions"/>
+    <layout spacing="true">
+        <scrollBox id="windowActions_scrollBox"
+                   height="100%"
+                   responsive="true">
+            <groupBox id="picture"
+                      responsive="true"
+                      spacing="true"
+                      width="AUTO">
+                <image datasource="cocktailDs"
+                       property="picture"
+                       responsive="true"
+                       scaleMode="CONTAIN"/>
+                <upload id="upload"
+                        datasource="cocktailDs"
+                        fileStoragePutMode="IMMEDIATE"
+                        property="picture"
+                        responsive="true"
+                        showClearButton="true"/>
+            </groupBox>
+            <fieldGroup id="fieldGroup"
+                        datasource="cocktailDs"
+                        responsive="true">
+                <column width="250px">
+                    <field property="name"/>
+                    <field property="description"/>
+                    <field property="howTo"/>
+                </column>
+            </fieldGroup>
+            <groupBox id="cocktailLinesBox"
+                      caption="msg://net.tillard.ricarduino.entity/Cocktail.cocktailLines"
+                      responsive="true">
+                <table id="cocktailLinesTable"
+                       responsive="true"
+                       width="100%">
+                    <actions>
+                        <action id="create"/>
+                        <action id="edit"/>
+                        <action id="remove"/>
+                    </actions>
+                    <columns>
+                        <column id="ingredient"/>
+                        <column id="parts"/>
+                    </columns>
+                    <rows datasource="cocktailLinesDs"/>
+                    <buttonsPanel responsive="true">
+                        <button action="cocktailLinesTable.create"
+                                responsive="true"/>
+                        <button action="cocktailLinesTable.edit"
+                                responsive="true"/>
+                        <button action="cocktailLinesTable.remove"
+                                responsive="true"/>
+                    </buttonsPanel>
+                </table>
+            </groupBox>
+            <frame id="windowActions"
+                   responsive="true"
+                   screen="editWindowActions"
+                   width="AUTO"/>
+        </scrollBox>
     </layout>
 </window>

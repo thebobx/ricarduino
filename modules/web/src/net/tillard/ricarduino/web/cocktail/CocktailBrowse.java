@@ -1,5 +1,6 @@
 package net.tillard.ricarduino.web.cocktail;
 
+import com.haulmont.cuba.gui.WindowManager;
 import com.haulmont.cuba.gui.components.AbstractLookup;
 import com.haulmont.cuba.core.entity.FileDescriptor;
 import com.haulmont.cuba.gui.components.*;
@@ -12,10 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 import static com.haulmont.cuba.gui.components.Image.*;
 
@@ -91,12 +89,15 @@ public class CocktailBrowse extends AbstractLookup {
 
     public void onDetailsBtnClick() {
         //showNotification("Préparation d'un " + cocktailsTable.getSingleSelected().getName(), cocktailsTable.getSingleSelected().getDescription(), NotificationType.HUMANIZED);
-        popupViewServe.setPopupVisible(true);
-        
+        //popupViewServe.setPopupVisible(true);
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("sourceBtn", "details");
+        AbstractEditor editor = openEditor("ricarduino$Cocktail.edit", cocktailsTable.getSingleSelected(), WindowManager.OpenType.THIS_TAB, parameters);
+
     }
 
     public void onDrinkBntClick() {
         popupViewServe.setPopupVisible(false);
-        showNotification("Préparation d'un " + cocktailsTable.getSingleSelected().getName(), cocktailsTable.getSingleSelected().getDescription(), NotificationType.HUMANIZED);
+        //showNotification("Préparation d'un " + cocktailsTable.getSingleSelected().getName(), cocktailsTable.getSingleSelected().getDescription(), NotificationType.HUMANIZED);
     }
 }

@@ -18,6 +18,6 @@ public class CocktailDetails extends AbstractEditor<Cocktail> {
     }
 
     public void onTestBtnClick() {
-        showNotification("FieldGroup " + fieldGroup.getField("name"), "test", NotificationType.HUMANIZED);
+        showNotification("FieldGroup5 " + fieldGroup.getField("name").getInputPrompt(), "test", NotificationType.HUMANIZED);
     }
 }

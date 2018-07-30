@@ -13,6 +13,8 @@ import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.chile.core.annotations.Composition;
 import com.haulmont.cuba.core.entity.annotation.OnDelete;
 import com.haulmont.cuba.core.global.DeletePolicy;
+
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.OneToMany;
 import com.haulmont.cuba.core.entity.annotation.Listeners;
@@ -83,5 +85,17 @@ public class Cocktail extends StandardEntity {
         return picture;
     }
 
-
+    public static Cocktail getCopyFrom(Cocktail origCocktail) {
+        Cocktail copyCocktail = new Cocktail();
+        copyCocktail.name = origCocktail.name;
+        copyCocktail.description = origCocktail.description;
+        copyCocktail.howTo = origCocktail.howTo;
+        copyCocktail.picture = origCocktail.picture;
+        List<CocktailLine> copyCocktailLines = new ArrayList<>();
+        for (CocktailLine origCocktailLine : origCocktail.getCocktailLines()) {
+            copyCocktailLines.add(CocktailLine.getCopyFrom(origCocktailLine));
+        }
+        copyCocktail.cocktailLines = copyCocktailLines;
+        return copyCocktail;
+    }
 }

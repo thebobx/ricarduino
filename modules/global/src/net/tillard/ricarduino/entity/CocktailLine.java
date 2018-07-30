@@ -8,6 +8,8 @@ import javax.persistence.ManyToOne;
 import com.haulmont.cuba.core.entity.StandardEntity;
 import javax.persistence.Column;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @Table(name = "RICARDUINO_COCKTAIL_LINE")
 @Entity(name = "ricarduino$CocktailLine")
@@ -53,5 +55,11 @@ public class CocktailLine extends StandardEntity {
         return ingredient;
     }
 
-
+    public static CocktailLine getCopyFrom(CocktailLine origCocktailLine) {
+        CocktailLine copyCocktailLine = new CocktailLine();
+        copyCocktailLine.parts = origCocktailLine.parts;
+        copyCocktailLine.ingredient = origCocktailLine.ingredient;
+        copyCocktailLine.cocktail = origCocktailLine.cocktail;
+        return copyCocktailLine;
+    }
 }
