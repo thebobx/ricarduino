@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="net.tillard.ricarduino.web.actuator.ActuatorBrowse"
+        focusComponent="actuatorsTable"
+        lookupComponent="actuatorsTable"
+        messagesPack="net.tillard.ricarduino.web.actuator">
+    <dsContext>
+        <groupDatasource id="actuatorsDs"
+                         class="net.tillard.ricarduino.entity.Actuator"
+                         view="_local">
+            <query>
+                <![CDATA[select e from ricarduino$Actuator e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="actuatorsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="actuatorsTable"
+                datasource="actuatorsDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="actuatorsTable"
+                    width="100%">
+            <actions>
+                <action id="create"/>
+                <action id="edit"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+                <column id="gpio"/>
+                <column id="size"/>
+            </columns>
+            <rows datasource="actuatorsDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="actuatorsTable.create"/>
+                <button id="editBtn"
+                        action="actuatorsTable.edit"/>
+                <button id="removeBtn"
+                        action="actuatorsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

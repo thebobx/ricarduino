@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="net.tillard.ricarduino.web.ingredient.IngredientEdit"
+        datasource="ingredientDs"
+        focusComponent="fieldGroup"
+        messagesPack="net.tillard.ricarduino.web.ingredient">
+    <dsContext>
+        <datasource id="ingredientDs"
+                    class="net.tillard.ricarduino.entity.Ingredient"
+                    view="ingredient-view"/>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="windowActions"
+            spacing="true">
+        <groupBox id="picture"
+                  spacing="true">
+            <image id="image"
+                   datasource="ingredientDs"
+                   height="360px"
+                   property="picture"
+                   scaleMode="CONTAIN"
+                   width="320px"/>
+            <upload datasource="ingredientDs"
+                    fileStoragePutMode="IMMEDIATE"
+                    property="picture"
+                    showClearButton="true"/>
+        </groupBox>
+        <fieldGroup id="fieldGroup"
+                    datasource="ingredientDs">
+            <column width="250px">
+                <field property="name"/>
+                <field property="available"/>
+                <field property="actuator"/>
+            </column>
+        </fieldGroup>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>

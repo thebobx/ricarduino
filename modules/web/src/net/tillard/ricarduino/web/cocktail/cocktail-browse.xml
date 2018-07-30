@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="net.tillard.ricarduino.web.cocktail.CocktailBrowse"
+        focusComponent="cocktailsTable"
+        lookupComponent="cocktailsTable"
+        messagesPack="net.tillard.ricarduino.web.cocktail">
+    <dsContext>
+        <groupDatasource id="cocktailsDs"
+                         class="net.tillard.ricarduino.entity.Cocktail"
+                         view="cocktail-with-picture-view">
+            <query>
+                <![CDATA[select e from ricarduino$Cocktail e]]>
+            </query>
+        </groupDatasource>
+        <groupDatasource id="cocktailLinesDs"
+                         class="net.tillard.ricarduino.entity.CocktailLine"
+                         view="cocktailLine-with-ingredient-view">
+            <query>
+                <![CDATA[select e from ricarduino$CocktailLine e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="cocktailsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="cocktailsTable"
+                datasource="cocktailsDs"
+                responsive="true">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="cocktailsTable"
+                    align="TOP_RIGHT"
+                    responsive="true"
+                    width="100%">
+            <actions>
+                <action id="create"/>
+                <action id="edit"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="picture"/>
+                <column id="name"/>
+                <column id="description"/>
+                <column id="howTo"/>
+            </columns>
+            <rows datasource="cocktailsDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true"
+                          responsive="true">
+                <button id="createBtn"
+                        action="cocktailsTable.create"
+                        responsive="true"/>
+                <button id="editBtn"
+                        action="cocktailsTable.edit"
+                        responsive="true"/>
+                <button id="removeBtn"
+                        action="cocktailsTable.remove"
+                        responsive="true"/>
+                <button id="detailsBtn"
+                        caption="Details / Drink it !"
+                        enable="false"
+                        invoke="onDetailsBtnClick"
+                        responsive="true"/>
+                <popupView id="popupViewServe"
+                           align="TOP_RIGHT"
+                           height="100%"
+                           hideOnMouseOut="false"
+                           responsive="true"
+                           width="100%">
+                    <vbox height="100%"
+                          spacing="true">
+                        <fieldGroup datasource="cocktailsDs">
+                            <column width="250px">
+                                <field property="name"/>
+                                <field property="description"/>
+                                <field property="howTo"/>
+                            </column>
+                        </fieldGroup>
+                        <table height="100px"
+                               width="200px">
+                            <columns>
+                                <column id="parts"/>
+                                <column id="ingredient"/>
+                            </columns>
+                            <rows datasource="cocktailLinesDs"/>
+                        </table>
+                        <button id="drinkBnt"
+                                caption="GO !"
+                                invoke="onDrinkBntClick"
+                                responsive="true"/>
+                    </vbox>
+                </popupView>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<views xmlns="http://schemas.haulmont.com/cuba/view.xsd">
+    <view class="net.tillard.ricarduino.entity.Ingredient"
+          extends="_local"
+          name="ingredient-view">
+        <property name="picture"
+                  view="_minimal"/>
+        <property name="actuator"
+                  view="_minimal"/>
+    </view>
+    <view class="net.tillard.ricarduino.entity.Cocktail"
+          extends="_local"
+          name="cocktail-with-picture-view">
+        <property name="picture"
+                  view="_minimal"/>
+        <property name="cocktailLines"
+                  view="_minimal">
+            <property name="ingredient"
+                      view="_minimal"/>
+            <property name="parts"/>
+        </property>
+    </view>
+    <view class="net.tillard.ricarduino.entity.Cocktail"
+          extends="_local"
+          name="cocktail-with-lines-view">
+        <property name="picture"
+                  view="_minimal"/>
+        <property name="cocktailLines"
+                  view="_minimal">
+            <property name="ingredient"
+                      view="_minimal"/>
+            <property name="parts"/>
+        </property>
+    </view>
+    <view class="net.tillard.ricarduino.entity.CocktailLine"
+          extends="_local"
+          name="cocktailLine-with-ingredient-view">
+        <property name="ingredient"
+                  view="_minimal"/>
+    </view>
+</views>

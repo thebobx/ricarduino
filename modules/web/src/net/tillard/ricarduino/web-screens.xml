@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<screen-config xmlns="http://schemas.haulmont.com/cuba/screens.xsd">
+    <screen id="ricarduino$Ingredient.browse"
+            template="net/tillard/ricarduino/web/ingredient/ingredient-browse.xml"/>
+    <screen id="ricarduino$Ingredient.edit"
+            template="net/tillard/ricarduino/web/ingredient/ingredient-edit.xml"/>
+    <screen id="ricarduino$Actuator.browse"
+            template="net/tillard/ricarduino/web/actuator/actuator-browse.xml"/>
+    <screen id="ricarduino$Actuator.edit"
+            template="net/tillard/ricarduino/web/actuator/actuator-edit.xml"/>
+    <screen id="ricarduino$Cocktail.browse"
+            template="net/tillard/ricarduino/web/cocktail/cocktail-browse.xml"/>
+    <screen id="ricarduino$Cocktail.edit"
+            template="net/tillard/ricarduino/web/cocktail/cocktail-edit.xml"/>
+    <screen id="ricarduino$CocktailLine.edit"
+            template="net/tillard/ricarduino/web/cocktailline/cocktail-line-edit.xml"/>
+    <screen id="ricarduino$Cocktail.details"
+            template="net/tillard/ricarduino/web/cocktail/cocktail-details.xml"/>
+</screen-config>

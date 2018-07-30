@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="net.tillard.ricarduino.web.ingredient.IngredientBrowse"
+        focusComponent="ingredientsTable"
+        lookupComponent="ingredientsTable"
+        messagesPack="net.tillard.ricarduino.web.ingredient">
+    <dsContext>
+        <groupDatasource id="ingredientsDs"
+                         class="net.tillard.ricarduino.entity.Ingredient"
+                         view="ingredient-view">
+            <query>
+                <![CDATA[select e from ricarduino$Ingredient e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="ingredientsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="ingredientsTable"
+                datasource="ingredientsDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="ingredientsTable"
+                    width="100%">
+            <actions>
+                <action id="create"/>
+                <action id="edit"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="picture"/>
+                <column id="name"/>
+                <column id="available"/>
+                <column id="actuator"/>
+            </columns>
+            <rows datasource="ingredientsDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="ingredientsTable.create"/>
+                <button id="editBtn"
+                        action="ingredientsTable.edit"/>
+                <button id="removeBtn"
+                        action="ingredientsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>
