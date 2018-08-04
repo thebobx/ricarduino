@@ -16,7 +16,9 @@
         <property name="cocktailLines"
                   view="_minimal">
             <property name="ingredient"
-                      view="_minimal"/>
+                      view="_minimal">
+                <property name="available"/>
+            </property>
             <property name="parts"/>
         </property>
     </view>
@@ -28,14 +30,28 @@
         <property name="cocktailLines"
                   view="_minimal">
             <property name="ingredient"
-                      view="_minimal"/>
+                      view="_minimal">
+                <property name="available"/>
+            </property>
             <property name="parts"/>
+        </property>
+        <property name="glass"
+                  view="_minimal">
+            <property name="size"/>
         </property>
     </view>
     <view class="net.tillard.ricarduino.entity.CocktailLine"
           extends="_local"
           name="cocktailLine-with-ingredient-view">
         <property name="ingredient"
+                  view="_minimal">
+            <property name="available"/>
+        </property>
+    </view>
+    <view class="net.tillard.ricarduino.entity.Glass"
+          extends="_local"
+          name="glass-view">
+        <property name="picture"
                   view="_minimal"/>
     </view>
 </views>

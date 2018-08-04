@@ -79,7 +79,7 @@ public class CocktailBrowse extends AbstractLookup {
             StringBuilder sb = new StringBuilder();
             sb.append("<ul style=\"margin-right: 1em;\">");
             for (CocktailLine cocktailLine : cocktailLineSet) {
-                sb.append("<li>").append(cocktailLine.getParts().toString()).append(" ").append(cocktailLine.getIngredient().getName()).append("</li>");
+                sb.append("<li>").append(cocktailLine.getParts().toString().replaceAll(".0","")).append(" parts de ").append(cocktailLine.getIngredient().getName()).append("</li>");
             }
             sb.append("</ul>");
             content.setValue(sb.toString());
@@ -92,7 +92,7 @@ public class CocktailBrowse extends AbstractLookup {
         //popupViewServe.setPopupVisible(true);
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("sourceBtn", "details");
-        AbstractEditor editor = openEditor("ricarduino$Cocktail.edit", cocktailsTable.getSingleSelected(), WindowManager.OpenType.THIS_TAB, parameters);
+        AbstractEditor editor = openEditor("ricarduino$Cocktail.edit", cocktailsTable.getSingleSelected(), WindowManager.OpenType.NEW_TAB, parameters);
 
     }
 

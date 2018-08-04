@@ -1,14 +1,14 @@
 <Context>
     <!-- Database connection -->
-    <Resource driverClassName="org.hsqldb.jdbc.JDBCDriver"
+    <Resource driverClassName="org.postgresql.Driver"
               maxIdle="2"
               maxTotal="20"
               maxWaitMillis="5000"
               name="jdbc/CubaDS"
-              password=""
+              password="bapluc3027"
               type="javax.sql.DataSource"
-              url="jdbc:hsqldb:hsql://localhost/ricarduino"
-              username="sa"/>
+              url="jdbc:postgresql://localhost/ricarduino"
+              username="postgres"/>
     <!-- Switch off session serialization -->
     <Manager pathname=""/>
 </Context>

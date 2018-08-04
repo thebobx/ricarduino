@@ -28,7 +28,8 @@ public class CocktailEdit extends AbstractEditor<Cocktail> {
     private TextField howToField;
     @Named("fieldGroup.name")
     private TextField nameField;
-
+    @Inject
+    private Button windowCommit;
     @Inject
     private DataManager dataManager;
     @Inject
@@ -57,9 +58,9 @@ public class CocktailEdit extends AbstractEditor<Cocktail> {
             nameField.setEditable(false);
             descriptionField.setEditable(false);
             howToField.setEditable(false);
-
+            windowCommit.setCaption("Prepare Cocktail !!");
         } else {
-            showNotification("From edit", "", NotificationType.HUMANIZED);
+            //showNotification("From edit", "", NotificationType.HUMANIZED);
         }
     }
 
@@ -67,14 +68,27 @@ public class CocktailEdit extends AbstractEditor<Cocktail> {
     protected boolean preCommit() {
         //return super.preCommit();
         if ("details".equals(source)) {
-            //showNotification("Commit from details6", "name ingredient3 = ", NotificationType.HUMANIZED);
-            Cocktail afterCocktail = cocktailDs.getItem();
-            //TODO: Call prepareDrink(afterCocktail) here !!
-            afterCocktail.setCocktailLines(saveCocktail.getCocktailLines());
-            cocktailDs.setItem(afterCocktail);
-            cocktailDs.commit();
-            this.close(WINDOW_CLOSE,true);
-            return false;
+            Boolean cocktailAvailable = true;
+            String missingIngredient = "";
+            for (CocktailLine cocktailLine : cocktailDs.getItem().getCocktailLines()) {
+                if (!cocktailLine.getIngredient().getAvailable()) {
+                    cocktailAvailable = false;
+                    missingIngredient = cocktailLine.getIngredient().getName();
+                    break;
+                }
+            }
+            if (cocktailAvailable) {
+                Cocktail afterCocktail = cocktailDs.getItem();
+                Cocktail.prepareCocktail(afterCocktail);
+                //afterCocktail.setCocktailLines(saveCocktail.getCocktailLines());
+                //cocktailDs.setItem(afterCocktail);
+                //cocktailDs.commit();
+                this.close(WINDOW_CLOSE, true);
+                return false;
+            } else {
+                showNotification("Au moins un ingrédient manquant !", "Ingrédient : " + missingIngredient, NotificationType.HUMANIZED);
+                return false;
+            }
         } else {
             //showNotification("Commit from editing", "name ingredient = " + cocktailDs.getItem().getCocktailLines().get(0).getIngredient().getName(), NotificationType.HUMANIZED);
             return true;

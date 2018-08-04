@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="net.tillard.ricarduino.web.glass.GlassEdit"
+        datasource="glassDs"
+        focusComponent="fieldGroup"
+        messagesPack="net.tillard.ricarduino.web.glass">
+    <dsContext>
+        <datasource id="glassDs"
+                    class="net.tillard.ricarduino.entity.Glass"
+                    view="glass-view"/>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="windowActions"
+            spacing="true">
+        <image datasource="glassDs"
+               property="picture"
+               responsive="true"
+               scaleMode="CONTAIN"/>
+        <upload datasource="glassDs"
+                fileStoragePutMode="IMMEDIATE"
+                property="picture"
+                responsive="true"
+                showClearButton="true"/>
+        <fieldGroup id="fieldGroup"
+                    datasource="glassDs"
+                    responsive="true">
+            <column width="250px">
+                <field property="name"/>
+                <field property="size"/>
+            </column>
+        </fieldGroup>
+        <frame id="windowActions"
+               responsive="true"
+               screen="editWindowActions"/>
+    </layout>
+</window>

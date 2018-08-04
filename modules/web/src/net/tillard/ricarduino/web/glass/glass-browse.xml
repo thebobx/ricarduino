@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="net.tillard.ricarduino.web.glass.GlassBrowse"
+        focusComponent="glassesTable"
+        lookupComponent="glassesTable"
+        messagesPack="net.tillard.ricarduino.web.glass">
+    <dsContext>
+        <groupDatasource id="glassesDs"
+                         class="net.tillard.ricarduino.entity.Glass"
+                         view="glass-view">
+            <query>
+                <![CDATA[select e from ricarduino$Glass e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="glassesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="glassesTable"
+                datasource="glassesDs"
+                responsive="true">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="glassesTable"
+                    responsive="true"
+                    width="100%">
+            <actions>
+                <action id="create"/>
+                <action id="edit"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+                <column id="size"/>
+            </columns>
+            <rows datasource="glassesDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true"
+                          responsive="true">
+                <button id="createBtn"
+                        action="glassesTable.create"
+                        responsive="true"/>
+                <button id="editBtn"
+                        action="glassesTable.edit"
+                        responsive="true"/>
+                <button id="removeBtn"
+                        action="glassesTable.remove"
+                        responsive="true"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

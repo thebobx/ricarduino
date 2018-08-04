@@ -1,6 +1,6 @@
 -- begin RICARDUINO_INGREDIENT
 create table RICARDUINO_INGREDIENT (
-    ID varchar(36) not null,
+    ID uuid,
     VERSION integer not null,
     CREATE_TS timestamp,
     CREATED_BY varchar(50),
@@ -10,16 +10,16 @@ create table RICARDUINO_INGREDIENT (
     DELETED_BY varchar(50),
     --
     NAME varchar(255) not null,
-    PICTURE_ID varchar(36),
+    PICTURE_ID uuid,
     AVAILABLE boolean not null,
-    ACTUATOR_ID varchar(36),
+    ACTUATOR_ID uuid,
     --
     primary key (ID)
 )^
 -- end RICARDUINO_INGREDIENT
 -- begin RICARDUINO_ACTUATOR
 create table RICARDUINO_ACTUATOR (
-    ID varchar(36) not null,
+    ID uuid,
     VERSION integer not null,
     CREATE_TS timestamp,
     CREATED_BY varchar(50),
@@ -37,7 +37,7 @@ create table RICARDUINO_ACTUATOR (
 -- end RICARDUINO_ACTUATOR
 -- begin RICARDUINO_COCKTAIL_LINE
 create table RICARDUINO_COCKTAIL_LINE (
-    ID varchar(36) not null,
+    ID uuid,
     VERSION integer not null,
     CREATE_TS timestamp,
     CREATED_BY varchar(50),
@@ -46,16 +46,16 @@ create table RICARDUINO_COCKTAIL_LINE (
     DELETE_TS timestamp,
     DELETED_BY varchar(50),
     --
-    INGREDIENT_ID varchar(36) not null,
+    INGREDIENT_ID uuid not null,
     PARTS double precision not null,
-    COCKTAIL_ID varchar(36) not null,
+    COCKTAIL_ID uuid not null,
     --
     primary key (ID)
 )^
 -- end RICARDUINO_COCKTAIL_LINE
 -- begin RICARDUINO_COCKTAIL
 create table RICARDUINO_COCKTAIL (
-    ID varchar(36) not null,
+    ID uuid,
     VERSION integer not null,
     CREATE_TS timestamp,
     CREATED_BY varchar(50),
@@ -65,17 +65,17 @@ create table RICARDUINO_COCKTAIL (
     DELETED_BY varchar(50),
     --
     NAME varchar(255) not null,
-    GLASS_ID varchar(36),
+    GLASS_ID uuid,
     DESCRIPTION varchar(500),
     HOW_TO varchar(500),
-    PICTURE_ID varchar(36),
+    PICTURE_ID uuid,
     --
     primary key (ID)
 )^
 -- end RICARDUINO_COCKTAIL
 -- begin RICARDUINO_GLASS
 create table RICARDUINO_GLASS (
-    ID varchar(36) not null,
+    ID uuid,
     VERSION integer not null,
     CREATE_TS timestamp,
     CREATED_BY varchar(50),
@@ -85,7 +85,7 @@ create table RICARDUINO_GLASS (
     DELETED_BY varchar(50),
     --
     NAME varchar(255) not null,
-    PICTURE_ID varchar(36),
+    PICTURE_ID uuid,
     SIZE_ double precision not null,
     --
     primary key (ID)

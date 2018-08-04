@@ -44,7 +44,6 @@
                 <column id="picture"/>
                 <column id="name"/>
                 <column id="description"/>
-                <column id="howTo"/>
             </columns>
             <rows datasource="cocktailsDs"/>
             <rowsCount/>

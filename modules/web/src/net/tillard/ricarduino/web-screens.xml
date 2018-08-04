@@ -14,6 +14,8 @@
             template="net/tillard/ricarduino/web/cocktail/cocktail-edit.xml"/>
     <screen id="ricarduino$CocktailLine.edit"
             template="net/tillard/ricarduino/web/cocktailline/cocktail-line-edit.xml"/>
-    <screen id="ricarduino$Cocktail.details"
-            template="net/tillard/ricarduino/web/cocktail/cocktail-details.xml"/>
+    <screen id="ricarduino$Glass.browse"
+            template="net/tillard/ricarduino/web/glass/glass-browse.xml"/>
+    <screen id="ricarduino$Glass.edit"
+            template="net/tillard/ricarduino/web/glass/glass-edit.xml"/>
 </screen-config>

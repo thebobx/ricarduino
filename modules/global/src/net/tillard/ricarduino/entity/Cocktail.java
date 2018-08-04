@@ -12,12 +12,17 @@ import com.haulmont.cuba.core.entity.StandardEntity;
 import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.chile.core.annotations.Composition;
 import com.haulmont.cuba.core.entity.annotation.OnDelete;
+import com.haulmont.cuba.core.global.AppBeans;
 import com.haulmont.cuba.core.global.DeletePolicy;
 
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.OneToMany;
 import com.haulmont.cuba.core.entity.annotation.Listeners;
+import net.tillard.ricarduino.service.GpioService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import javax.persistence.ManyToOne;
 
 @NamePattern("%s %s|name,name")
 @Table(name = "RICARDUINO_COCKTAIL")
@@ -25,9 +30,15 @@ import com.haulmont.cuba.core.entity.annotation.Listeners;
 public class Cocktail extends StandardEntity {
     private static final long serialVersionUID = -4188293036823515893L;
 
+    private static Logger log = LoggerFactory.getLogger(Cocktail.class);
+
     @NotNull
     @Column(name = "NAME", nullable = false, unique = true)
     protected String name;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "GLASS_ID")
+    protected Glass glass;
 
     @Column(name = "DESCRIPTION", length = 500)
     protected String description;
@@ -43,6 +54,15 @@ public class Cocktail extends StandardEntity {
     @OnDelete(DeletePolicy.CASCADE)
     @OneToMany(mappedBy = "cocktail")
     protected List<CocktailLine> cocktailLines;
+
+    public void setGlass(Glass glass) {
+        this.glass = glass;
+    }
+
+    public Glass getGlass() {
+        return glass;
+    }
+
 
     public void setCocktailLines(List<CocktailLine> cocktailLines) {
         this.cocktailLines = cocktailLines;
@@ -97,5 +117,32 @@ public class Cocktail extends StandardEntity {
         }
         copyCocktail.cocktailLines = copyCocktailLines;
         return copyCocktail;
+    }
+
+    public static void prepareCocktail(Cocktail cocktail) {
+        Double glassSize = cocktail.getGlass().getSize();
+        Double totalParts = new Double(0);
+        for (CocktailLine cocktailLine : cocktail.cocktailLines) {
+            totalParts += cocktailLine.parts;
+        }
+        for (CocktailLine cocktailLine : cocktail.cocktailLines) {
+            try {
+                pourIngredient(cocktailLine.ingredient, glassSize/totalParts*cocktailLine.parts);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void pourIngredient(Ingredient ingredient, Double amount) throws InterruptedException {
+        if (ingredient.getAvailable()) {
+            Integer gpioNumber = ingredient.getActuator().getGpio();
+            Double actuatorSize = ingredient.getActuator().getSize();
+            //log.info("Ingredient : " + ingredient.getName() + " | Amount : " + amount.toString());
+
+            AppBeans.get(GpioService.class).activateGpio(gpioNumber);
+            //TODO : deal with the amount > actuatorSize
+        }
+        Thread.sleep(3000);
     }
 }

@@ -7,5 +7,6 @@
         <class>net.tillard.ricarduino.entity.Actuator</class>
         <class>net.tillard.ricarduino.entity.CocktailLine</class>
         <class>net.tillard.ricarduino.entity.Cocktail</class>
+        <class>net.tillard.ricarduino.entity.Glass</class>
     </persistence-unit>
 </persistence>

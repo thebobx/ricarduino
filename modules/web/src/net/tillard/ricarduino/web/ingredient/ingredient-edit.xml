@@ -15,20 +15,22 @@
     <layout expand="windowActions"
             spacing="true">
         <groupBox id="picture"
+                  responsive="true"
                   spacing="true">
             <image id="image"
                    datasource="ingredientDs"
-                   height="360px"
                    property="picture"
-                   scaleMode="CONTAIN"
-                   width="320px"/>
+                   responsive="true"
+                   scaleMode="CONTAIN"/>
             <upload datasource="ingredientDs"
                     fileStoragePutMode="IMMEDIATE"
                     property="picture"
+                    responsive="true"
                     showClearButton="true"/>
         </groupBox>
         <fieldGroup id="fieldGroup"
-                    datasource="ingredientDs">
+                    datasource="ingredientDs"
+                    responsive="true">
             <column width="250px">
                 <field property="name"/>
                 <field property="available"/>
@@ -36,6 +38,7 @@
             </column>
         </fieldGroup>
         <frame id="windowActions"
+               responsive="true"
                screen="editWindowActions"/>
     </layout>
 </window>
