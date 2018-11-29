@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        class="net.tillard.ricarduino.web.actuator.GpioTesting"
+        messagesPack="net.tillard.ricarduino.web.actuator">
+    <dialogMode height="600"
+                width="800"/>
+    <layout>
+        <vbox responsive="true">
+            <groupBox align="MIDDLE_CENTER"
+                      orientation="horizontal"
+                      responsive="true"
+                      width="100%">
+                <label align="MIDDLE_CENTER"
+                       responsive="true"
+                       value="Activate GPIO number "/>
+                <textField id="gpioNumberField"
+                           datatype="int"
+                           height="29px"
+                           inputPrompt="Gpio number"
+                           responsive="true"/>
+                <label align="MIDDLE_CENTER"
+                       responsive="true"
+                       value="during"/>
+                <textField id="pulseDurationField"
+                           datatype="long"
+                           inputPrompt="Pulse duration"
+                           responsive="true"/>
+                <label align="MIDDLE_CENTER"
+                       responsive="true"
+                       value="milliseconds, repeat"/>
+                <textField id="numberOfPulseField"
+                           datatype="int"
+                           inputPrompt="Number of pulses"
+                           responsive="true"/>
+                <label align="MIDDLE_CENTER"
+                       responsive="true"
+                       value="times with a"/>
+                <textField id="pauseDurationField"
+                           datatype="long"
+                           inputPrompt="Pause duration"
+                           responsive="true"/>
+                <label align="MIDDLE_CENTER"
+                       responsive="true"
+                       value="milliseconds interval."/>
+            </groupBox>
+            <buttonsPanel responsive="true">
+                <button id="testGpioBtn"
+                        caption="Test GPIO"
+                        invoke="onTestGpioBtnClick"
+                        responsive="true"/>
+                <button id="cancelBtn"
+                        caption="Cancel"
+                        invoke="onCancelBtnClick"
+                        responsive="true"/>
+            </buttonsPanel>
+        </vbox>
+    </layout>
+</window>

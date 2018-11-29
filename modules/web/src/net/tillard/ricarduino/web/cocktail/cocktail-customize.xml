@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="net.tillard.ricarduino.web.cocktail.CocktailCustomize"
+        datasource="cocktailDs"
+        focusComponent="fieldGroup"
+        messagesPack="net.tillard.ricarduino.web.cocktail">
+    <dsContext>
+        <datasource id="cocktailDs"
+                    class="net.tillard.ricarduino.entity.Cocktail"
+                    view="cocktail-with-lines-view">
+            <collectionDatasource id="cocktailLinesDs"
+                                  property="cocktailLines"/>
+        </datasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout spacing="true">
+        <scrollBox id="windowActions_scrollBox"
+                   height="100%"
+                   responsive="true">
+            <groupBox id="picture"
+                      responsive="true"
+                      spacing="true"
+                      width="AUTO">
+                <image datasource="cocktailDs"
+                       property="picture"
+                       responsive="true"
+                       scaleMode="CONTAIN"/>
+                <upload id="upload"
+                        datasource="cocktailDs"
+                        fileStoragePutMode="IMMEDIATE"
+                        property="picture"
+                        responsive="true"
+                        showClearButton="true"/>
+            </groupBox>
+            <fieldGroup id="fieldGroup"
+                        datasource="cocktailDs"
+                        responsive="true">
+                <column width="250px">
+                    <field property="name"/>
+                    <field property="description"/>
+                    <field property="howTo"/>
+                    <field property="glass"/>
+                </column>
+            </fieldGroup>
+            <groupBox id="cocktailLinesBox"
+                      caption="msg://net.tillard.ricarduino.entity/Cocktail.cocktailLines"
+                      responsive="true">
+                <table id="cocktailLinesTable"
+                       editable="true"
+                       responsive="true"
+                       width="100%">
+                    <actions>
+                        <action id="create"/>
+                        <action id="edit"/>
+                        <action id="remove"/>
+                    </actions>
+                    <columns>
+                        <column id="ingredient"/>
+                        <column id="parts"
+                                editable="true"/>
+                    </columns>
+                    <rows datasource="cocktailLinesDs"/>
+                    <buttonsPanel responsive="true">
+                        <button action="cocktailLinesTable.create"
+                                responsive="true"/>
+                        <button action="cocktailLinesTable.edit"
+                                responsive="true"/>
+                        <button action="cocktailLinesTable.remove"
+                                responsive="true"/>
+                    </buttonsPanel>
+                </table>
+            </groupBox>
+            <frame id="windowActions"
+                   responsive="true"
+                   screen="editWindowActions"
+                   width="AUTO"/>
+        </scrollBox>
+    </layout>
+</window>

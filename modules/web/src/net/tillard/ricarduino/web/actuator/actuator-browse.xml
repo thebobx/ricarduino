@@ -45,6 +45,9 @@
                         action="actuatorsTable.edit"/>
                 <button id="removeBtn"
                         action="actuatorsTable.remove"/>
+                <button id="testGpioBtn"
+                        caption="GPIO Testing"
+                        invoke="onTestGpioBtnClick"/>
             </buttonsPanel>
         </groupTable>
     </layout>

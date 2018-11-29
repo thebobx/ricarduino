@@ -6,7 +6,10 @@
         <property name="picture"
                   view="_minimal"/>
         <property name="actuator"
-                  view="_minimal"/>
+                  view="_minimal">
+            <property name="gpio"/>
+            <property name="size"/>
+        </property>
     </view>
     <view class="net.tillard.ricarduino.entity.Cocktail"
           extends="_local"
@@ -18,8 +21,17 @@
             <property name="ingredient"
                       view="_minimal">
                 <property name="available"/>
+                <property name="actuator"
+                          view="_minimal">
+                    <property name="gpio"/>
+                    <property name="size"/>
+                </property>
             </property>
             <property name="parts"/>
+        </property>
+        <property name="glass"
+                  view="_minimal">
+            <property name="size"/>
         </property>
     </view>
     <view class="net.tillard.ricarduino.entity.Cocktail"
@@ -32,6 +44,11 @@
             <property name="ingredient"
                       view="_minimal">
                 <property name="available"/>
+                <property name="actuator"
+                          view="_minimal">
+                    <property name="gpio"/>
+                    <property name="size"/>
+                </property>
             </property>
             <property name="parts"/>
         </property>
@@ -46,6 +63,11 @@
         <property name="ingredient"
                   view="_minimal">
             <property name="available"/>
+            <property name="actuator"
+                      view="_minimal">
+                <property name="gpio"/>
+                <property name="size"/>
+            </property>
         </property>
     </view>
     <view class="net.tillard.ricarduino.entity.Glass"

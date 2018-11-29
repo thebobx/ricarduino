@@ -1,0 +1,11 @@
+@import "halo-defaults";
+@import "net.tillard.ricarduino/halo-ext-defaults";
+@import "app-components";
+@import "net.tillard.ricarduino/halo-ext";
+
+.halo {
+  // include auto-generated app components SCSS
+  @include app_components;
+  
+  @include net_tillard_ricarduino-halo-ext;
+}

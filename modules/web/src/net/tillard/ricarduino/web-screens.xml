@@ -18,4 +18,10 @@
             template="net/tillard/ricarduino/web/glass/glass-browse.xml"/>
     <screen id="ricarduino$Glass.edit"
             template="net/tillard/ricarduino/web/glass/glass-edit.xml"/>
+    <screen id="ricarduino$Gpio.test"
+            template="net/tillard/ricarduino/web/actuator/gpio-testing.xml"/>
+    <screen id="ricarduino$Cocktail.customize"
+            template="net/tillard/ricarduino/web/cocktail/cocktail-customize.xml"/>
+    <screen id="mainWindow"
+            template="net/tillard/ricarduino/ext-mainwindow.xml"/>
 </screen-config>

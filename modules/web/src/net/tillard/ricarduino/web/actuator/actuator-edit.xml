@@ -22,6 +22,19 @@
                 <field property="size"/>
             </column>
         </fieldGroup>
+        <buttonsPanel>
+            <textField id="pulseField"
+                       inputPrompt="Pulse duration"/>
+            <button id="pulseBtn"
+                    caption="Pulse"
+                    invoke="onPulseBtnClick"/>
+            <button id="highBtn"
+                    caption="Set high"
+                    invoke="onHighBtnClick"/>
+            <button id="lowBtn"
+                    caption="Set low"
+                    invoke="onLowBtnClick"/>
+        </buttonsPanel>
         <frame id="windowActions"
                screen="editWindowActions"/>
     </layout>

@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class CocktailEdit extends AbstractEditor<Cocktail> {
+public class CocktailCustomize extends AbstractEditor<Cocktail> {
 
     @Inject
     private FileUploadField upload;
@@ -38,8 +38,6 @@ public class CocktailEdit extends AbstractEditor<Cocktail> {
     @Inject
     private Datasource<Cocktail> cocktailDs;
 
-    private String source = "";
-
     private Cocktail saveCocktail = null;
 
     @Inject
@@ -48,9 +46,37 @@ public class CocktailEdit extends AbstractEditor<Cocktail> {
     @Override
     public void init(Map<String, Object> params) {
         super.init(params);
+
+        Cocktail origCocktail = (Cocktail) WindowParams.ITEM.getEntity(params);
+        saveCocktail = Cocktail.getCopyFrom(origCocktail);
+
+        upload.setVisible(false);
+        nameField.setEditable(false);
+        descriptionField.setEditable(false);
+        howToField.setEditable(false);
+        windowCommit.setCaption("Prepare Cocktail !!");
     }
 
-    public Component generatePictureField(Datasource datasource, String fieldId) {
-		return null;
+    @Override
+    protected boolean preCommit() {
+        Boolean cocktailAvailable = true;
+        String missingIngredient = "";
+        for (CocktailLine cocktailLine : cocktailDs.getItem().getCocktailLines()) {
+            if (!cocktailLine.getIngredient().getAvailable()) {
+                cocktailAvailable = false;
+                missingIngredient = cocktailLine.getIngredient().getName();
+                break;
+            }
+        }
+        if (cocktailAvailable) {
+            Cocktail afterCocktail = cocktailDs.getItem();
+            afterCocktail.prepareCocktail();
+            this.close(WINDOW_CLOSE, true);
+            return false;
+        } else {
+            showNotification("Au moins un ingrédient manquant !", "Ingrédient : " + missingIngredient, NotificationType.HUMANIZED);
+            return false;
+        }
     }
+
 }

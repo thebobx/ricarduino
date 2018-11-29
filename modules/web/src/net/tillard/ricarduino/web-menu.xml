@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
-    <menu id="application-ricarduino"
-          insertBefore="administration">
-        <item screen="ricarduino$Ingredient.browse"/>
-        <item screen="ricarduino$Actuator.browse"/>
-        <item screen="ricarduino$Cocktail.browse"/>
-        <item screen="ricarduino$Glass.browse"/>
-    </menu>
+    <item id="cocktailBrowse"
+          icon="font-icon:BEER"
+          insertBefore="administration"
+          screen="ricarduino$Cocktail.browse"/>
+    <item id="ingredientBrowse"
+          icon="FLASK"
+          insertBefore="administration"
+          screen="ricarduino$Ingredient.browse"/>
+    <item id="glassBrowse"
+          icon="GLASS"
+          insertBefore="administration"
+          screen="ricarduino$Glass.browse"/>
+    <item id="actuatorBrowse"
+          icon="GEARS"
+          insertBefore="administration"
+          screen="ricarduino$Actuator.browse"/>
 </menu-config>

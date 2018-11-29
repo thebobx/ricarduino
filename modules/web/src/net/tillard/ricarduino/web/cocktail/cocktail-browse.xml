@@ -23,32 +23,20 @@
     </dsContext>
     <dialogMode height="600"
                 width="800"/>
-    <layout expand="cocktailsTable"
-            spacing="true">
+    <layout expand="cocktailsTable">
         <filter id="filter"
                 applyTo="cocktailsTable"
                 datasource="cocktailsDs"
-                responsive="true">
+                responsive="true"
+                visible="false">
             <properties include=".*"/>
         </filter>
-        <groupTable id="cocktailsTable"
-                    align="TOP_RIGHT"
-                    responsive="true"
-                    width="100%">
-            <actions>
-                <action id="create"/>
-                <action id="edit"/>
-                <action id="remove"/>
-            </actions>
-            <columns>
-                <column id="picture"/>
-                <column id="name"/>
-                <column id="description"/>
-            </columns>
-            <rows datasource="cocktailsDs"/>
-            <rowsCount/>
+        <hbox margin="false,false,true,false"
+              spacing="true"
+              width="100%">
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true"
+                          margin="false,false,false,true"
                           responsive="true">
                 <button id="createBtn"
                         action="cocktailsTable.create"
@@ -60,40 +48,60 @@
                         action="cocktailsTable.remove"
                         responsive="true"/>
                 <button id="detailsBtn"
-                        caption="Details / Drink it !"
+                        caption="Customize it"
                         enable="false"
+                        icon="GEARS"
                         invoke="onDetailsBtnClick"
-                        responsive="true"/>
-                <popupView id="popupViewServe"
-                           align="TOP_RIGHT"
-                           height="100%"
-                           hideOnMouseOut="false"
-                           responsive="true"
-                           width="100%">
-                    <vbox height="100%"
-                          spacing="true">
-                        <fieldGroup datasource="cocktailsDs">
-                            <column width="250px">
-                                <field property="name"/>
-                                <field property="description"/>
-                                <field property="howTo"/>
-                            </column>
-                        </fieldGroup>
-                        <table height="100px"
-                               width="200px">
-                            <columns>
-                                <column id="parts"/>
-                                <column id="ingredient"/>
-                            </columns>
-                            <rows datasource="cocktailLinesDs"/>
-                        </table>
-                        <button id="drinkBnt"
-                                caption="GO !"
-                                invoke="onDrinkBntClick"
-                                responsive="true"/>
-                    </vbox>
-                </popupView>
+                        responsive="true"
+                        stylename="primary"/>
+                <button id="drinkBtn"
+                        caption="Drink it !"
+                        enable="false"
+                        icon="GLASS"
+                        invoke="onDrinkBtnClick"
+                        responsive="true"
+                        stylename="danger"/>
             </buttonsPanel>
+            <buttonsPanel align="TOP_RIGHT"
+                          alwaysVisible="true">
+                <checkBox id="availableCheckBox"
+                          align="MIDDLE_LEFT"
+                          caption="Only available"
+                          responsive="true"
+                          stylename="button-switcher"
+                          visible="false"/>
+                <optionsGroup id="availableOptionsGroup"
+                              align="MIDDLE_RIGHT"
+                              orientation="horizontal"
+                              stylename="button-switcher"/>
+            </buttonsPanel>
+        </hbox>
+        <groupTable id="cocktailsTable"
+                    align="TOP_RIGHT"
+                    columnControlVisible="false"
+                    columnHeaderVisible="false"
+                    reorderingAllowed="false"
+                    responsive="true"
+                    stylename="no-vertical-lines borderless no-horizontal-lines no-header"
+                    width="100%">
+            <actions>
+                <action id="create"/>
+                <action id="edit"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="Picture"
+                        caption="Picture"/>
+                <column id="About"
+                        caption="About"/>
+                <column id="Ingredients"
+                        caption="Ingredients"/>
+            </columns>
+            <rows datasource="cocktailsDs"/>
         </groupTable>
+        <hbox id="rowsCountBox"
+              height="20px"
+              responsive="true"
+              width="100%"/>
     </layout>
 </window>

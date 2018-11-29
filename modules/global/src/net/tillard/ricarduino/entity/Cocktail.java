@@ -20,6 +20,7 @@ import java.util.List;
 import javax.persistence.OneToMany;
 import com.haulmont.cuba.core.entity.annotation.Listeners;
 import net.tillard.ricarduino.service.GpioService;
+import org.apache.commons.lang3.SystemUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import javax.persistence.ManyToOne;
@@ -119,30 +120,30 @@ public class Cocktail extends StandardEntity {
         return copyCocktail;
     }
 
-    public static void prepareCocktail(Cocktail cocktail) {
-        Double glassSize = cocktail.getGlass().getSize();
+    public void prepareCocktail() {
+        Double glassSize = this.getGlass().getSize();
         Double totalParts = new Double(0);
-        for (CocktailLine cocktailLine : cocktail.cocktailLines) {
-            totalParts += cocktailLine.parts;
+        for (CocktailLine cocktailLine : this.getCocktailLines()) {
+            totalParts += cocktailLine.getParts();
         }
-        for (CocktailLine cocktailLine : cocktail.cocktailLines) {
+        for (CocktailLine cocktailLine : this.getCocktailLines()) {
             try {
-                pourIngredient(cocktailLine.ingredient, glassSize/totalParts*cocktailLine.parts);
+                pourIngredient(cocktailLine.getIngredient(), glassSize/totalParts*cocktailLine.getParts());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    public static void pourIngredient(Ingredient ingredient, Double amount) throws InterruptedException {
+    public void pourIngredient(Ingredient ingredient, Double amount) throws InterruptedException {
+        log.info("test2 " + ingredient.getName());
         if (ingredient.getAvailable()) {
             Integer gpioNumber = ingredient.getActuator().getGpio();
             Double actuatorSize = ingredient.getActuator().getSize();
             //log.info("Ingredient : " + ingredient.getName() + " | Amount : " + amount.toString());
-
-            AppBeans.get(GpioService.class).activateGpio(gpioNumber);
             //TODO : deal with the amount > actuatorSize
+            AppBeans.get(GpioService.class).pulseGpio(gpioNumber,1000);
         }
-        Thread.sleep(3000);
+        Thread.sleep(2000);
     }
 }
