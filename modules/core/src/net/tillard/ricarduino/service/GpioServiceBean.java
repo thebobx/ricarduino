@@ -55,7 +55,7 @@ public class GpioServiceBean implements GpioService, AppContext.Listener {
     @Override
     public void applicationStarted() {
         log.info("Dans applicationStarted de GpioServiceBean");
-        if (SystemUtils.IS_OS_WINDOWS) {
+        if (true) {//SystemUtils.IS_OS_WINDOWS
             log.info("No GPIO on Windows !");
         } else {
             gpioController = GpioFactory.getInstance();
@@ -95,7 +95,7 @@ public class GpioServiceBean implements GpioService, AppContext.Listener {
     @Override
     public void pulseGpio(Integer gpioNumber, long duration) {
         log.info("Pulsing gpio : " + gpioNumber.toString() + " for " + duration + " milliseconds");
-        if (SystemUtils.IS_OS_WINDOWS) {
+        if (true) {
             log.info("No GPIO on Windows !");
         } else {
             ((GpioPinDigitalOutput)gpioController.getProvisionedPin("gpio"+gpioNumber.toString())).pulse(duration, PinState.LOW);
@@ -106,7 +106,7 @@ public class GpioServiceBean implements GpioService, AppContext.Listener {
     @Override
     public void highGpio(Integer gpioNumber) {
         log.info("Set high gpio : " + gpioNumber.toString());
-        if (SystemUtils.IS_OS_WINDOWS) {
+        if (true) {
             log.info("No GPIO on Windows !");
         } else {
             ((GpioPinDigitalOutput)gpioController.getProvisionedPin("gpio"+gpioNumber.toString())).high();
@@ -117,7 +117,7 @@ public class GpioServiceBean implements GpioService, AppContext.Listener {
     @Override
     public void lowGpio(Integer gpioNumber) {
         log.info("Set low gpio : " + gpioNumber.toString());
-        if (SystemUtils.IS_OS_WINDOWS) {
+        if (true) {
             log.info("No GPIO on Windows !");
         } else {
             ((GpioPinDigitalOutput)gpioController.getProvisionedPin("gpio"+gpioNumber.toString())).low();
@@ -129,7 +129,7 @@ public class GpioServiceBean implements GpioService, AppContext.Listener {
     public void testGpio(Integer gpioNumber, long pulseDuration, Integer nbPulses, long waitDuration) {
         log.info("TestGpio : gpioNumber=" + gpioNumber.toString() + "|pulseDuration=" + pulseDuration + "|nbPulses=" + nbPulses.toString() + "|waitDuration=" + waitDuration);
         for (int i = 0; i < nbPulses; i++) {
-            if (SystemUtils.IS_OS_WINDOWS) {
+            if (true) {
                 log.info("No GPIO on Windows !");
             } else {
                 log.info("Pulse number " + i);

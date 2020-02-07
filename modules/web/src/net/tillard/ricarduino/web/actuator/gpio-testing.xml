@@ -8,11 +8,12 @@
         <vbox responsive="true">
             <groupBox align="MIDDLE_CENTER"
                       orientation="horizontal"
+                      outerMargin="true,false,true,false"
                       responsive="true"
                       width="100%">
                 <label align="MIDDLE_CENTER"
                        responsive="true"
-                       value="Activate GPIO number "/>
+                       value="Activate GPIO"/>
                 <textField id="gpioNumberField"
                            datatype="int"
                            height="29px"
@@ -27,7 +28,7 @@
                            responsive="true"/>
                 <label align="MIDDLE_CENTER"
                        responsive="true"
-                       value="milliseconds, repeat"/>
+                       value="ms, repeat"/>
                 <textField id="numberOfPulseField"
                            datatype="int"
                            inputPrompt="Number of pulses"
@@ -41,13 +42,15 @@
                            responsive="true"/>
                 <label align="MIDDLE_CENTER"
                        responsive="true"
-                       value="milliseconds interval."/>
+                       value="ms interval."/>
             </groupBox>
-            <buttonsPanel responsive="true">
+            <buttonsPanel margin="true,false,true,false"
+                          responsive="true">
                 <button id="testGpioBtn"
                         caption="Test GPIO"
                         invoke="onTestGpioBtnClick"
-                        responsive="true"/>
+                        responsive="true"
+                        stylename="friendly"/>
                 <button id="cancelBtn"
                         caption="Cancel"
                         invoke="onCancelBtnClick"

@@ -232,10 +232,11 @@ task wrapper(type: Wrapper) {
 }
 
 task buildWar(type: CubaWarBuilding) {
+    logbackConfigurationFile = 'etc/war-logback.xml'
     coreContextXmlPath = 'modules/core/web/META-INF/war-context.xml'
     includeContextXml = true
     includeJdbcDriver = true
     webXmlPath = 'modules/web/web/WEB-INF/single-war-web.xml'
     appProperties = ['cuba.automaticDatabaseUpdate' : true]
-    appHome = '/var/lib/tomcat8/webapps'
+    appHome = '/opt/ricarduino_home'
 }

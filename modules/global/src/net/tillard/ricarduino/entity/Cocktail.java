@@ -15,15 +15,21 @@ import com.haulmont.cuba.core.entity.annotation.OnDelete;
 import com.haulmont.cuba.core.global.AppBeans;
 import com.haulmont.cuba.core.global.DeletePolicy;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.OneToMany;
 import com.haulmont.cuba.core.entity.annotation.Listeners;
 import net.tillard.ricarduino.service.GpioService;
 import org.apache.commons.lang3.SystemUtils;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import javax.persistence.ManyToOne;
+import org.apache.http.client.methods.HttpPost;
+
 
 @NamePattern("%s %s|name,name")
 @Table(name = "RICARDUINO_COCKTAIL")
@@ -141,8 +147,18 @@ public class Cocktail extends StandardEntity {
             Integer gpioNumber = ingredient.getActuator().getGpio();
             Double actuatorSize = ingredient.getActuator().getSize();
             //log.info("Ingredient : " + ingredient.getName() + " | Amount : " + amount.toString());
-            //TODO : deal with the amount > actuatorSize
-            AppBeans.get(GpioService.class).pulseGpio(gpioNumber,1000);
+            //TODO : when amount > actuatorSize -> multiple pulses with a sleep between
+            //AppBeans.get(GpioService.class).pulseGpio(gpioNumber,1000);
+            String uri = "http://192.168.1.220:1880/gpio/pulse/"+gpioNumber.toString()+"/1/2000";
+            log.info("Calling " + uri);
+            HttpPost authRequest = new HttpPost(uri);
+            try {
+                CloseableHttpClient httpClient = HttpClients.createDefault();
+                CloseableHttpResponse response = httpClient.execute(authRequest);
+            } catch (IOException e) {
+                throw new IllegalStateException(e);
+            }
+            log.info("Done calling uri");
         }
         Thread.sleep(2000);
     }
